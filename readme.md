@@ -4,6 +4,8 @@ This code sample makes use of Flask and Flask-SQLAlchemy, a library that manages
 ## Requirements.txt
     Flask
     Flask-SQLAlchemy
+    requests
+
 
 ## Setup Repo
 ```
