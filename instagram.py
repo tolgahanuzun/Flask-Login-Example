@@ -3,13 +3,12 @@ import requests
 
 
 def getfollowedby(url):
-	"""View Instagram user follower count"""
-	link = 'https://www.instagram.com/%s/?__a=1'
-	tag = link % (url)
-	user = requests.get(tag)
-	return (user.json()['graphql']['user']['edge_followed_by']['count'])
+    """View Instagram user follower count"""
+    link = f'https://www.instagram.com/{url}/?__a=1'
+    user = requests.get(link)
+    return (user.json()['graphql']['user']['edge_followed_by']['count'])
+
 
 def getname(url):
-	"""Split the URL from the username"""
-	return url.replace("https://", "").replace("www.", "").replace("instagram.com/", "").replace("/", "")
-
+    """Split the URL from the username"""
+    return url.split("instagram.com/")[1].replace("/", "")
