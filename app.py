@@ -2,7 +2,7 @@
 
 from flask import Flask, url_for, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
-from instagram import getfollowedby, getname
+from instagram import get_followed_by, get_user_name
 
 
 app = Flask(__name__)
@@ -28,8 +28,8 @@ def home():
         return render_template('index.html')
     else:
         if request.method == 'POST':
-            username = getname(request.form['username'])
-            return render_template('index.html', data=getfollowedby(username))
+            username = get_user_name(request.form['username'])
+            return render_template('index.html', data=get_followed_by(username))
         return render_template('index.html')
 
 
@@ -73,6 +73,7 @@ def logout():
 
 
 if __name__ == '__main__':
+    app.app_context().push()
     app.debug = True
     db.create_all()
     app.secret_key = "123"
